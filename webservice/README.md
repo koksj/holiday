@@ -66,3 +66,7 @@ podman run --rm=true --name postgres-quarkus-hibernate -e POSTGRES_USER=hibernat
 
 # Delete container
 podman rm id
+
+pg_dump --host=localhost --username=hibernate --table=country --data-only --column-inserts --dbname=hibernate_db  > country.sql
+pg_dump --host=localhost --username=hibernate --table=country_holiday --data-only --column-inserts --dbname=hibernate_db  > country_holiday.sql
+pg_dump --host=localhost --username=hibernate --table=holiday --data-only --column-inserts --dbname=hibernate_db  > holiday.sql

@@ -5,8 +5,10 @@ import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "holiday")
 public class HolidayEntity {
 
     private Long id;
