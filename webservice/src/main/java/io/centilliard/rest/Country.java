@@ -12,11 +12,15 @@ public class Country {
     private List<Holiday> holidays = new ArrayList<>();
 
     public Country() {
-
     }
 
     public Country(String code) {
         this.code = code;
+    }
+
+    public Country(String name, String code) {
+        this.code = code;
+        this.name = name;
     }
 
     public Country(String name, String code, List<Holiday> holidays) {

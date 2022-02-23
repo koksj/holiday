@@ -17,7 +17,6 @@ import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,66 +37,29 @@ public class HolidayResource {
     private EntityManager em;
 
     /**
-     * Return the public holidays for a country name
-     * @param country
-     * @return
-     */
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/holidays/country/{name}")
-    public Response getPublicHolidaysByName(@PathParam("name") String name) {
-
-        Country country = new Country(name);
-       
-        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<CountryEntity> criteriaQuery = criteriaBuilder.createQuery(CountryEntity.class);
-        Root<CountryEntity> from = criteriaQuery.from(CountryEntity.class);
-        criteriaQuery.where(criteriaBuilder.equal(from.get("name"), country.getCode()));
-
-        TypedQuery<CountryEntity> typedQuery = em.createQuery(criteriaQuery);
-
-        CountryEntity countryEntity = new CountryEntity();
-
-        try {
-            countryEntity = typedQuery.getSingleResult();
-
-        } catch ( PersistenceException e) {
-            log.error(e.getMessage());
-            countryEntity = new CountryEntity();
-        }
-
-        List<Holiday> holidays = new ArrayList<>();
-
-        /* Check for null */
-        if (countryEntity.getHolidayEntities() != null && countryEntity.getHolidayEntities().size() > 0) {
-            countryEntity.getHolidayEntities().forEach(holidayEntity -> {
-                holidays.add(new Holiday(holidayEntity.getName(), holidayEntity.getDate().toLocalDate()));
-            });
-        }
-
-        country = new Country(countryEntity.getName(), countryEntity.getCode(), holidays);
-
-        return Response.ok(country).build();
-    }
-  
-    /**
      * Return the public holidays for a ISO country code
+     * 
      * @param country
      * @return
      */
     @POST
-    @Consumes(MediaType.TEXT_PLAIN)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/holidays/country/{code}")
-    public Response getPublicHolidaysByCode(@PathParam("code") String code) {
+    @Path("/holidays/find")
+    public Response getPublicHolidays(Country country) {
 
-        Country country = new Country(code);
-       
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<CountryEntity> criteriaQuery = criteriaBuilder.createQuery(CountryEntity.class);
+
         Root<CountryEntity> from = criteriaQuery.from(CountryEntity.class);
-        criteriaQuery.where(criteriaBuilder.equal(from.get("code"), country.getCode()));
+
+        if (country.getCode() == null || country.getCode().isEmpty()) {
+            log.info("Code is null or empty");
+            criteriaQuery.where(criteriaBuilder.equal(from.get("name"), country.getName()));            
+        } else if (country.getName() == null || country.getName().isEmpty()) {
+            log.info("Name is null or empty");
+            criteriaQuery.where(criteriaBuilder.equal(from.get("code"), country.getCode()));            
+        }
 
         TypedQuery<CountryEntity> typedQuery = em.createQuery(criteriaQuery);
 
@@ -106,8 +68,8 @@ public class HolidayResource {
         try {
             countryEntity = typedQuery.getSingleResult();
 
-        } catch ( PersistenceException e) {
-            log.error(e.getMessage());
+        } catch (PersistenceException e) {
+            log.error("PersistenceException " + e.getMessage());
             countryEntity = new CountryEntity();
         }
 
@@ -127,6 +89,7 @@ public class HolidayResource {
 
     /**
      * Create a new public holiday
+     * 
      * @param country
      * @return
      */

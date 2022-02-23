@@ -12,7 +12,7 @@ public class Holiday {
 
     }
 
-    public Holiday(String name,LocalDate date) {
+    public Holiday(String name, LocalDate date) {
         this.name = name;
         this.date = date;
     }
@@ -35,7 +35,7 @@ public class Holiday {
 
     public String toString() {
 
-        return name + " " + date.format(DateTimeFormatter.BASIC_ISO_DATE); 
+        return name + " " + date.format(DateTimeFormatter.BASIC_ISO_DATE);
     }
 
 }
