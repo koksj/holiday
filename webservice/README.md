@@ -61,3 +61,8 @@ Create your first JPA entity
 
 
 ./mvnw quarkus:add-extension -Dextensions="io.quarkus:quarkus-resteasy-reactive-jackson"
+
+podman run --rm=true --name postgres-quarkus-hibernate -e POSTGRES_USER=hibernate -e POSTGRES_PASSWORD=hibernate -e POSTGRES_DB=hibernate_db -p 5432:5432 postgres:13.1
+
+# Delete container
+podman rm id

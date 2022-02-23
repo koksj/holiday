@@ -1,0 +1,82 @@
+{
+    "name": "Israel",
+    "code": "IL",
+    "holidays": [
+      {
+        "date": "2022-04-15",
+        "name": "First day of Passover"
+      },
+      {
+        "date": "2022-04-16",
+        "name": "First day of Passover"
+      },
+      {
+        "date": "2022-04-21",
+        "name": "Seventh day of Passover"
+      },
+      {
+        "date": "2022-04-22",
+        "name": "Seventh day of Passover"
+      },
+      {
+        "date": "2022-05-04",
+        "name": "Yom Ha'atzmaut"
+      },
+      {
+        "date": "2022-05-05",
+        "name": "Yom Ha'atzmaut"
+      },
+      {
+        "date": "2022-06-04",
+        "name": "Shavuot"
+      },
+      {
+        "date": "2022-06-05",
+        "name": "Shavuot"
+      },
+      {
+        "date": "2022-09-25",
+        "name": "Rosh Hashanah"
+      },
+      {
+        "date": "2022-09-26",
+        "name": "Rosh Hashanah"
+      },
+      {
+        "date": "2022-09-27",
+        "name": "Rosh Hashanah"
+      },
+      {
+        "date": "2022-10-04",
+        "name": "Yom Kippur"
+      },
+      {
+        "date": "2022-10-05",
+        "name": "Yom Kippur"
+      },
+      {
+        "date": "2022-10-09",
+        "name": "First day of Sukkot"
+      },
+      {
+        "date": "2022-10-10",
+        "name": "First day of Sukkot"
+      },
+      {
+        "date": "2022-10-16",
+        "name": "Simchat Torah"
+      },
+      {
+        "date": "2022-10-16",
+        "name": "Shemini Atzeret"
+      },
+      {
+        "date": "2022-10-17",
+        "name": "Simchat Torah"
+      },
+      {
+        "date": "2022-10-17",
+        "name": "Shemini Atzeret"
+      }
+    ]
+  }

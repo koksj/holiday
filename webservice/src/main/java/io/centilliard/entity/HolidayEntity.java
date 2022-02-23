@@ -13,6 +13,15 @@ public class HolidayEntity {
     private String name;
     private Date date;
 
+    public HolidayEntity() {
+
+    }
+    
+    public HolidayEntity(String name,Date date) {
+        this.date = date;
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue
     public Long getId() {

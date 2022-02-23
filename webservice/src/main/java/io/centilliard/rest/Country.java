@@ -11,9 +11,18 @@ public class Country {
     private String code;
     private List<Holiday> holidays = new ArrayList<>();
 
-    public Country(String name, String code) {
+    public Country() {
+
+    }
+
+    public Country(String code) {
+        this.code = code;
+    }
+
+    public Country(String name, String code, List<Holiday> holidays) {
         this.code = code;
         this.name = name;
+        this.holidays.addAll(holidays);
     }
 
     public String getName() {
@@ -38,7 +47,8 @@ public class Country {
     }
 
     public void setHolidays(List<Holiday> holidays) {
-        this.holidays = new ArrayList<>(holidays.stream().sorted(Comparator.comparing(Holiday::getDate)).collect(Collectors.toList()));
+        this.holidays = new ArrayList<>(
+                holidays.stream().sorted(Comparator.comparing(Holiday::getDate)).collect(Collectors.toList()));
     }
 
 }
