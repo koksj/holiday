@@ -14,6 +14,13 @@ INSERT INTO public.holiday (id, date, name) VALUES (9, '2022-09-25', 'Rosh Hasha
 INSERT INTO public.holiday (id, date, name) VALUES (10, '2022-09-26', 'Rosh Hashanah');
 INSERT INTO public.holiday (id, date, name) VALUES (11, '2022-09-27', 'Rosh Hashanah');
 INSERT INTO public.holiday (id, date, name) VALUES (12, '2022-10-04', 'Yom Kippur');
+INSERT INTO public.holiday (id, date, name) VALUES (13, '2022-10-05', 'Yom Kippur');
+INSERT INTO public.holiday (id, date, name) VALUES (14, '2022-10-09', 'First day of Sukkot');
+INSERT INTO public.holiday (id, date, name) VALUES (15, '2022-10-10', 'First day of Sukkot');
+INSERT INTO public.holiday (id, date, name) VALUES (16, '2022-10-16', 'Simchat Torah');
+INSERT INTO public.holiday (id, date, name) VALUES (17, '2022-10-16', 'Shemini Atzeret');
+INSERT INTO public.holiday (id, date, name) VALUES (18, '2022-10-17', 'Simchat Torah');
+INSERT INTO public.holiday (id, date, name) VALUES (19, '2022-10-17', 'Shemini Atzeret');
 
 INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 1);
 INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 2);
@@ -27,3 +34,10 @@ INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id)
 INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 10);
 INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 11);
 INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 12);
+INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 13);
+INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 14);
+INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 15);
+INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 16);
+INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 17);
+INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 18);
+INSERT INTO public.country_holiday (countryentity_countrypk, holidayentities_id) VALUES (1, 19);
