@@ -10,40 +10,11 @@ import { Holiday } from './holiday';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'frontend';
-  name: String = "";
-  code: String = "";
+  
+  constructor() { }
 
-  displayedColumns: string[] = ['Holiday', 'Date'];
-  dataSource: MatTableDataSource<Holiday> = new MatTableDataSource<Holiday>();
-
-  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
-  constructor(private dataService: DataService) { }
-
-  ngOnInit(): void {     
-    this.getHolidays({ "name": "", "code": "IL", "holidays": []});
-  }
-
-  public getHolidays(country: Country): void {
-
-    this.dataService.getPublicHolidays(country).subscribe(
-      country => {
-        this.code = country.code;
-        this.name = country.name;
-        this.dataSource = new MatTableDataSource<Holiday>(country.holidays);
-        this.dataSource.paginator = this.paginator;
-      }
-    );
-
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
 
 }

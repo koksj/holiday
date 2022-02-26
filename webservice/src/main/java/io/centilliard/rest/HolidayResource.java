@@ -15,6 +15,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -34,7 +35,7 @@ public class HolidayResource {
     private static final Logger log = LoggerFactory.getLogger(HolidayResource.class);
 
     @Inject
-    private EntityManager em;
+    EntityManager em;
 
     /**
      * Return the public holidays for a ISO country code
@@ -50,15 +51,14 @@ public class HolidayResource {
 
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<CountryEntity> criteriaQuery = criteriaBuilder.createQuery(CountryEntity.class);
-
         Root<CountryEntity> from = criteriaQuery.from(CountryEntity.class);
 
         if (country.getCode() == null || country.getCode().isEmpty()) {
             log.info("Code is null or empty");
-            criteriaQuery.where(criteriaBuilder.equal(from.get("name"), country.getName()));            
+            criteriaQuery.where(criteriaBuilder.equal(from.get("name"), country.getName()));
         } else if (country.getName() == null || country.getName().isEmpty()) {
             log.info("Name is null or empty");
-            criteriaQuery.where(criteriaBuilder.equal(from.get("code"), country.getCode()));            
+            criteriaQuery.where(criteriaBuilder.equal(from.get("code"), country.getCode()));
         }
 
         TypedQuery<CountryEntity> typedQuery = em.createQuery(criteriaQuery);
@@ -88,7 +88,7 @@ public class HolidayResource {
     }
 
     /**
-     * Create a new public holiday
+     * Create new public holidays
      * 
      * @param country
      * @return
@@ -101,6 +101,7 @@ public class HolidayResource {
     public Response setHoliday(Country country) {
 
         CountryEntity countryEntity = new CountryEntity();
+        
         countryEntity.setCode(country.getCode());
         countryEntity.setName(country.getName());
 
@@ -109,18 +110,47 @@ public class HolidayResource {
         country.getHolidays().forEach(holiday -> {
             // Convert to mili seconds since epoch
             Long mili = holiday.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
-            holidayEntities.add(new HolidayEntity(holiday.getName(), new Date(mili)));
+            holidayEntities.add(new HolidayEntity(holiday.getName(), new Date(mili),countryEntity));
         });
 
         countryEntity.setHolidayEntities(holidayEntities);
 
         try {
-            em.persist(countryEntity);
+            em.persist(countryEntity);            
         } catch (EntityExistsException | IllegalArgumentException | TransactionException e) {
-            log.error(e.getMessage());
+            //log.error(e.getMessage());
         }
 
         return Response.ok(country).build();
+    }
+
+    @GET
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/countries")
+    public Response getCountries() {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<CountryEntity> cq = cb.createQuery(CountryEntity.class);
+        Root<CountryEntity> rootEntry = cq.from(CountryEntity.class);
+        CriteriaQuery<CountryEntity> all = cq.select(rootEntry);
+
+        TypedQuery<CountryEntity> allQuery = em.createQuery(all);
+        List<CountryEntity> countryEntitys = new ArrayList<>();
+
+        try {
+            countryEntitys = allQuery.getResultList();
+        } catch (PersistenceException e) {
+            log.error("PersistenceException " + e.getMessage());            
+        }
+
+        List<Country> countries = new ArrayList<>();
+
+        countryEntitys.forEach(country -> {
+            countries.add(new Country(country.getName(), country.getCode()));
+        });
+
+        return Response.ok(countries).build();
     }
 
 }

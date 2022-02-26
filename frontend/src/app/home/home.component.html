@@ -1,0 +1,19 @@
+<form  [formGroup]="countryControl">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Country</mat-label>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Country"
+             matInput
+             formControlName="countryName"
+             [matAutocomplete]="auto">
+             <mat-error *ngIf="countryControl.controls['countryName'].hasError('required')">
+              Country name is <strong>required</strong>
+            </mat-error>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let country of countries" [value]="country.name">
+          {{country.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>

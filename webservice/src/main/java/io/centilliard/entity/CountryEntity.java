@@ -29,7 +29,7 @@ public class CountryEntity implements Serializable {
     @Id
     @SequenceGenerator(name = "countrySeq", sequenceName = "country_pk_seq", allocationSize = 1, initialValue = 1)
     @GeneratedValue(generator = "countrySeq")
-    private long countryPk;
+    private Long countryPk;
 
     @Column(name = "country_name", nullable = false)
     private String name;
@@ -37,7 +37,7 @@ public class CountryEntity implements Serializable {
     @Column(name = "country_code", nullable = false)
     private String code;
 
-    @OneToMany( cascade = CascadeType.ALL)
+    @OneToMany( mappedBy = "countryEntity", cascade = CascadeType.ALL)
     private List<HolidayEntity> holidayEntities;
 
     public CountryEntity() {

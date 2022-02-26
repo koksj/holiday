@@ -17,9 +17,17 @@ export class DataService {
 
   public getPublicHolidays(country: Country): Observable<Country> {
 
-    const url =  environment.holidayApi + "/holidays/find";
+    const url = environment.holidayApi + "/holidays/find";
 
-    return this.httpClient.post<Country>(url,country).pipe();
+    return this.httpClient.post<Country>(url, country).pipe();
   }
-  
+
+  public getCountries(): Observable<Country[]> {
+    
+    const url = environment.holidayApi + "/countries";
+
+    return this.httpClient.get<Country[]>(url).pipe();
+
+  }
+
 }
