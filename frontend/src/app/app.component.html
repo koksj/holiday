@@ -7,19 +7,9 @@
 
   <mat-menu #menu="matMenu" [overlapTrigger]="false">
 
-    <button mat-menu-item>
+    <button mat-menu-item (click)="home()">
       <mat-icon>home</mat-icon>
       <span>Home</span>
-    </button>
-
-    <button mat-menu-item>
-      <mat-icon>login</mat-icon>
-      <span>Login</span>
-    </button>
-
-    <button mat-menu-item>
-      <mat-icon>exit_to_app</mat-icon>
-      <span>Logout</span>
     </button>
 
   </mat-menu>

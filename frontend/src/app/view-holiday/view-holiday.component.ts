@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Country } from '../country';
 import { DataService } from '../data.service';
 import { Holiday } from '../holiday';
@@ -22,10 +23,12 @@ export class ViewHolidayComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getHolidays({ "name": "", "code": "IL", "holidays": [] } as Country);
+    // Get the Agent id from the route
+    const code = this.route.snapshot.paramMap.get('code');
+    this.getHolidays({ "code": code } as Country);
   }
 
   public getHolidays(country: Country): void {

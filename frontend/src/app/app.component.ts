@@ -4,6 +4,7 @@ import { Country } from './country';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Holiday } from './holiday';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,11 @@ import { Holiday } from './holiday';
 export class AppComponent {
 
   title = 'frontend';
-  
-  constructor() { }
 
+  constructor(private router: Router) { }
+
+  public home(): void {
+    this.router.navigate(['/home']);
+  }
 
 }

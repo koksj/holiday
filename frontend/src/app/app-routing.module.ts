@@ -6,7 +6,7 @@ import { ViewHolidayComponent } from './view-holiday/view-holiday.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'view', component: ViewHolidayComponent },
+  { path: 'view/:code', component: ViewHolidayComponent },
 ];
 
 @NgModule({
