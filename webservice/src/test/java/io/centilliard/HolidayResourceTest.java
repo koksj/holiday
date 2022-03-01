@@ -9,7 +9,7 @@ import com.google.common.net.HttpHeaders;
 
 import org.junit.jupiter.api.Test;
 
-import io.centilliard.rest.Country;
+import io.centilliard.dto.CountryDto;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.response.Response;
 
@@ -20,7 +20,7 @@ public class HolidayResourceTest {
     public void testHolidayByCountryCode() {
 
         Response response = given()
-                .body(new Country("", "IL"))
+                .body(new CountryDto("", "IL"))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
                 .when()
@@ -37,7 +37,7 @@ public class HolidayResourceTest {
     public void testHolidayByCountryCodeNull() {
 
         Response response = given()
-                .body(new Country("Israel", null))
+                .body(new CountryDto("Israel", null))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
                 .when()
@@ -54,7 +54,7 @@ public class HolidayResourceTest {
     public void testHolidayByCountryName() {
 
         Response response = given()
-                .body(new Country("Israel", ""))
+                .body(new CountryDto("Israel", ""))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
                 .when()
@@ -71,7 +71,7 @@ public class HolidayResourceTest {
     public void testHolidayByCountryNameNull() {
 
         Response response = given()
-                .body(new Country(null, "IL"))
+                .body(new CountryDto(null, "IL"))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON)
                 .when()

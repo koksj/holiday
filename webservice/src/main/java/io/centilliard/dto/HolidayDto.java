@@ -1,18 +1,18 @@
-package io.centilliard.rest;
+package io.centilliard.dto;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Holiday {
+public class HolidayDto {
 
     private LocalDate date;
     private String name;
 
-    public Holiday() {
+    public HolidayDto() {
 
     }
 
-    public Holiday(String name, LocalDate date) {
+    public HolidayDto(String name, LocalDate date) {
         this.name = name;
         this.date = date;
     }

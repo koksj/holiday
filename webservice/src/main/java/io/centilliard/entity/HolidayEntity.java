@@ -65,4 +65,12 @@ public class HolidayEntity implements Serializable {
         this.name = name;
     }
 
+    public CountryEntity getCountryEntity() {
+        return countryEntity;
+    }
+
+    public void setCountryEntity(CountryEntity countryEntity) {
+        this.countryEntity = countryEntity;
+    }    
+
 }
