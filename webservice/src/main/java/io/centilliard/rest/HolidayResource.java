@@ -20,7 +20,7 @@ import io.centilliard.service.HolidayService;
 public class HolidayResource {
 
     private static final Logger log = LoggerFactory.getLogger(HolidayResource.class);
-    
+
     @Inject
     HolidayService holidayService;
 
@@ -35,7 +35,7 @@ public class HolidayResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/holidays/find")
     public Response getPublicHolidays(CountryDto country) {
-        
+
         return Response.ok(holidayService.getPublicHolidays(country)).build();
     }
 
@@ -53,7 +53,7 @@ public class HolidayResource {
 
         holidayService.persistCountry(country);
 
-        return Response.ok(country).build();
+        return Response.ok().build();
     }
 
     @GET
