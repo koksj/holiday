@@ -72,3 +72,6 @@ pg_dump --host=localhost --username=hibernate --table=country --data-only --colu
 pg_dump --host=localhost --username=hibernate --table=country_holiday --data-only --column-inserts --dbname=hibernate_db  > country_holiday.sql
 pg_dump --host=localhost --username=hibernate --table=holiday --data-only --column-inserts --dbname=hibernate_db  > holiday.sql
 
+# Podman & KeyCloak
+podman run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:17.0.0 start-dev
+

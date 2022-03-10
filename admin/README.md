@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Troubleshhoting
+
+###
+
+Error: node_modules/keycloak-angular/lib/core/services/keycloak.service.d.ts:3:8 - error TS1259: Module '"/home/skok/Dev/SCM/Git/Centilliard/holiday/admin/node_modules/keycloak-js/dist/keycloak"' can only be default-imported using the 'allowSyntheticDefaultImports' flag
+
+3 import Keycloak from 'keycloak-js';
+         ~~~~~~~~
+
+  node_modules/keycloak-js/dist/keycloak.d.ts:23:1
+    23 export = Keycloak;
+       ~~~~~~~~~~~~~~~~~~
+    This module is declared with using 'export =', and can only be used with a default import when using the 'allowSyntheticDefaultImports' fla
+
+See:    
+https://github.com/mauriciovigolo/keycloak-angular/issues/359#issuecomment-974861770
+
+add "allowSyntheticDefaultImports": true to angularCompilerOptions in tsconfig.json
